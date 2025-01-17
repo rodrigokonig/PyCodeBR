@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carros</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Lista de Carros</h1>
+        <form method="GET" action="">
+             <div class="form-group">
+                <label for="modelo">Buscar por Modelo:</label>
+                <input type="text" name="busca" id="busca" class="form-control" placeholder="Digite o modelo">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <div class="form-group">
+                <label for="marca">Filtrar por Marca:</label>
+                <select name="marca" id="marca" class="form-control" onchange="this.form.submit()">
+                    <option value="">Todas as Marcas</option>
+                    {% for marca in marcas %}
+                        <option value="{{ marca.marca }}">{{ marca.marca }}</option>
+                    {% endfor %}
+                </select>
+                <a href="/" class="btn btn-secondary mt-3">Mostrar Todas as Marcas</a>
+            </div>
+        </form>
+        
+        <div class="row">
+            {% for carro in carros %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ carro.foto.url }}" class="card-img-top" alt="{{ carro.modelo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ carro.modelo }}</h5>
+                        <p class="card-text">Marca: {{ carro.marca.marca }}</p>
+                        <p class="card-text">Ano: {{ carro.ano_fabrica }}</p>
+                        <p class="card-text">Cor: {{ carro.cor }}</p>
+                        <p class="card-text">Preço: R$ {{ carro.valor }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
