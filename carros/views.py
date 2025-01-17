@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from carros.models import Carro, Marca
+from carros.forms import CarroForm
+
 
 
 def index(request):
@@ -17,3 +19,14 @@ def index(request):
     marcas = Marca.objects.all()  
     return render(request, 'index.html', {'carros': carros, 'marcas': marcas})  
 
+def cadastra_carro(request):
+    if request.method == 'POST':
+        novo_carro_form = CarroForm(request.POST, request.FILES)
+        if novo_carro_form.is_valid():
+            novo_carro_form.save()
+            return redirect('index')
+        else:
+            pass
+    else:
+        novo_carro_form = CarroForm()
+    return render(request, 'cadastra_carro.html', {'novo_carro_form':novo_carro_form})   
