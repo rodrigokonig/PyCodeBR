@@ -24,3 +24,14 @@ class Carro(models.Model):
 
     def __str__(self):
         return f'{self.modelo} - {self.ano_fabrica} - ID:{self.id}'
+
+class CarroInventario(models.Model):
+    qtd = models.IntegerField()
+    valor =  models.DecimalField(max_digits=10, decimal_places=2)
+    data_atualizacao =  models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-data_atualizacao']
+
+    def __str__(self):
+        return f'Quantidade: {self.qtd} - Valor: {self.valor} ({self.data_atualizacao})'

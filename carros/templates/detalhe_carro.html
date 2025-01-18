@@ -12,7 +12,7 @@
             <p class="card-text">Cor: {{ object.cor }}</p>
             <p class="card-text">Preço: R$ {{ object.valor }}</p>
             <p class="card-text">Placa: {{ object.placa }}</p>
-            <p class="card-text">Descrição: {{ object.descricao }}</p>
+            <p class="card-text">Descrição: <span style="color:blue"> <b>{{ object.bio }}</b></span></p>
             {% if user.is_authenticated %}
             <div>
             <a href="{% url 'altera' pk=object.pk %}" class="btn btn-warning">Alterar</a>
