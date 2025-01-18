@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from carros.models import Carro, Marca
 from carros.forms import Carro_ModelForm
 from django.views import View
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 class CarrosListView(ListView):
     model = Carro
@@ -26,20 +26,19 @@ class CarrosListView(ListView):
         context['marcas'] = Marca.objects.all()  # Add this line to include marcas in the context
         return context
 
-# class CadastraCarro(View):
-#     def get(self, request):
-#         novo_carro_form = Carro_ModelForm()
-#         return render(request, 'cadastra_carro.html', {'novo_carro_form': novo_carro_form}) 
-
-#     def post(self, request):
-#         novo_carro_form = Carro_ModelForm(request.POST, request.FILES)
-#         if novo_carro_form.is_valid():
-#             novo_carro_form.save()
-#             return redirect('index')
-#         return render(request, 'cadastra_carro.html', {'novo_carro_form': novo_carro_form})
-
 class CarroCreateView(CreateView):
     model = Carro
     form_class = Carro_ModelForm
     template_name = 'cadastra_carro.html'
-    success_url = '/index/'
+    success_url = '/'
+
+class CarroDeleteView(View):
+    def get(self, request, pk):
+        carro = Carro.objects.get(pk=pk)
+        carro.delete()
+        return redirect('index')
+
+class CarroDetailView(DetailView):
+    model = Carro
+    template_name = "detalhe_carro.html"
+

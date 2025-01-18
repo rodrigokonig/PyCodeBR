@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Detalhes do Carro</h1>
+    <div class="card">
+        <img src="{{ object.foto.url }}" class="card-img-top" alt="{{ object.modelo }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ object.modelo }}</h5>
+            <p class="card-text">Marca: {{ object.marca.marca }}</p>
+            <p class="card-text">Ano: {{ object.ano_fabrica }}</p>
+            <p class="card-text">Cor: {{ object.cor }}</p>
+            <p class="card-text">Preço: R$ {{ object.valor }}</p>
+            <p class="card-text">Placa: {{ object.placa }}</p>
+            <p class="card-text">Descrição: {{ object.descricao }}</p>
+            <a href="" class="btn btn-warning">Alterar</a>
+            <form method="POST" action="" style="display:inline;">
+                {% csrf_token %}
+                <input type="submit" value="Apagar" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja apagar este carro?');">
+            </form>
+            <a href="/" class="btn btn-secondary mt-3">Voltar para a lista</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
