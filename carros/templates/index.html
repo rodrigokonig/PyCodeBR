@@ -6,8 +6,15 @@
     <title>Carros</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container mt-5">
+        {% if user.is_authenticated %}
+        Olá , {{ user.username }}, seja bem vindo!
+         <div><a href="cadastra" class="btn btn-secondary mt-3">CADASTRAR CARRO</a></div>
+        {% else %}
+        <div><a href="registro/login" class="btn btn-secondary mt-3">FAZER LOGIN</a></div>
+        {% endif %}
         <h1>Lista de Carros</h1>
         <form method="GET" action="">
              <div class="form-group">
@@ -20,7 +27,7 @@
                 <select name="marca" id="marca" class="form-control" onchange="this.form.submit()">
                     <option value="">Todas as Marcas</option>
                     {% for marca in marcas %}
-                        <option value="{{ marca.marca }}">{{ marca.marca }}</option>
+                        <option value="{{ marca }}">{{ marca }}</option>
                     {% endfor %}
                 </select>
                 <a href="/" class="btn btn-secondary mt-3">Mostrar Todas as Marcas</a>
@@ -37,7 +44,7 @@
                         <p class="card-text">Marca: {{ carro.marca.marca }}</p>
                         <p class="card-text">Ano: {{ carro.ano_fabrica }}</p>
                         <p class="card-text">Cor: {{ carro.cor }}</p>
-                        <p class="card-text">Preço: R$ {{ carro.valor }}</p>
+                        <p class="card-text"><h3>Preço: R$ {{ carro.valor }}</h3></p>
                     </div>
                 </div>
             </div>

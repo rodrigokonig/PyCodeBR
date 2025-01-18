@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+ <div class="container mt-5">
+        <h1>LOGIN DE USUÁRIO</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+            {{ login_form.as_table }}
+            </table>
+            <input type="submit" value="Entrar" class="btn btn-primary">
+            <a href="/registro/registro" class="btn btn-secondary mt-3">FAZER CADASTRO</a>
+            <a href="/" class="btn btn-secondary mt-3">VOLTAR</a>
+        </form>
+    </div>
+
+{% endblock content %}
+
