@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Detalhes do Carro</h1>
+    <h1>COnfirmação de Exclusão do Carro</h1>
     <div class="card">
         <img src="{{ object.foto.url }}" class="card-img-top" alt="{{ object.modelo }}">
         <div class="card-body">
@@ -13,13 +13,10 @@
             <p class="card-text">Preço: R$ {{ object.valor }}</p>
             <p class="card-text">Placa: {{ object.placa }}</p>
             <p class="card-text">Descrição: {{ object.descricao }}</p>
-            {% if user.is_authenticated %}
-            <div>
-            <a href="{% url 'altera' pk=object.pk %}" class="btn btn-warning">Alterar</a>
-            <a href="{% url 'apaga' pk=object.pk %}" class="btn btn-danger">Apagar</a>
+            
+            <h1>Tem certeza que quer excluir?</h1>
+            <a href="{% url 'apaga' pk=object.pk %}" class="btn btn-danger">SIM</a>
             <a href="/" class="btn btn-secondary mt-3">Voltar para a lista</a>
-            {% endif %}
-            <div>
         </div>
     </div>
 </div>

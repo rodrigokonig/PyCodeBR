@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+ <div class="container mt-5">
+        <h1>Alterar Novo Carro</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <input type="submit" value="Cadastrar" class="btn btn-primary">
+            <a href="/" class="btn btn-secondary mt-3">VOLTAR</a>
+        </form>
+    </div>
+
+{% endblock content %}
+

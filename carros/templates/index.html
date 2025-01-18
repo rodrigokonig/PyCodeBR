@@ -36,9 +36,12 @@
         
         <div class="row">
             {% for carro in carros %}
-            <div class="col-md-4">
+            <div class="col-md-3">
+                
                 <div class="card mb-4">
+                    <a href="/carro/{{ carro.id }}">
                     <img src="{{ carro.foto.url }}" class="card-img-top" alt="{{ carro.modelo }}">
+                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ carro.modelo }}</h5>
                         <p class="card-text">Marca: {{ carro.marca.marca }}</p>
@@ -47,6 +50,7 @@
                         <p class="card-text"><h3>Preço: R$ {{ carro.valor }}</h3></p>
                     </div>
                 </div>
+           
             </div>
             {% endfor %}
         </div>
